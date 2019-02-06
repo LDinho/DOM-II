@@ -1,7 +1,7 @@
 // Your code goes here
 
 // NAVIGATION
-let logo = document.querySelector('.logo-heading')
+let logo = document.querySelector('.logo-heading');
 let navItems = document.querySelectorAll('.nav-link');
 
 const navigation = {
@@ -29,6 +29,43 @@ navItems.forEach((item) => {
     item.style.fontSize = 'initial';
   });
 })
+
+// MID SECTION
+let topMidSection = document.querySelector('section');
+
+/*
+It appears that it's not recommended to use focus on a plain <div> element
+but rather on a more appropriate/semantic element
+such as a button, form, input field, etc...
+See info here: https://stackoverflow.com/questions/18504139/div-onblur-function.
+
+Here I'm just experimenting to focus on a whole section -- had to use
+the tabindex attribute.
+ */
+
+topMidSection.setAttribute('tabindex', '0');
+topMidSection.classList.add('top-section');
+
+let topSection = document.querySelector('.top-section');
+
+topSection.addEventListener('focus', () => {
+  topSection.style.backgroundColor = 'lightblue';
+}, true);
+
+topSection.addEventListener('blur', () => {
+  topSection.style.backgroundColor = 'initial';
+}, true);
+
+let bottomMidSection = document.querySelector('.inverse-content');
+bottomMidSection.setAttribute('tabindex', '0');
+
+bottomMidSection.addEventListener('focus', () => {
+  bottomMidSection.style.backgroundColor = 'lightblue';
+}, true);
+
+bottomMidSection.addEventListener('blur', () => {
+  bottomMidSection.style.backgroundColor = 'initial';
+}, true);
 
 
 
