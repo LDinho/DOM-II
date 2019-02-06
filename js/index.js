@@ -67,6 +67,11 @@ bottomMidSection.addEventListener('blur', () => {
   bottomMidSection.style.backgroundColor = 'initial';
 }, true);
 
+// Resize Event on window - remove top image at 500px
+let mainImage = document.querySelector('img');
+mainImage.classList.add('main-image');
 
-
+window.addEventListener('resize', () => {
+  window.innerWidth < 500 ? mainImage.style.display = 'none' : mainImage.style.display = 'initial';
+})
 
