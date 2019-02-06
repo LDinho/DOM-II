@@ -82,4 +82,21 @@ destinationSection.style.overflow = 'scroll';
 
 destinationSection.addEventListener('scroll', () => {
   destinationSection.style.backgroundColor = 'lightgreen';
-})
+});
+
+// Drag and Dragover
+/*
+Drag fun bus image over bottomMidSection where it says "Adventure Awaits,
+and 2 events occurs.
+1st event: "Let's go" section turns red.
+2nd event: "Adventure Awaits" section gets a red border.
+ */
+
+mainImage.addEventListener('drag', () => {
+  topSection.style.backgroundColor = 'red';
+});
+
+bottomMidSection.addEventListener('dragover', () => {
+  bottomMidSection.style.border = '3px dashed red';
+});
+
