@@ -75,3 +75,11 @@ window.addEventListener('resize', () => {
   window.innerWidth < 500 ? mainImage.style.display = 'none' : mainImage.style.display = 'initial';
 })
 
+// Scroll
+let destinationSection = document.querySelector('.content-destination');
+destinationSection.style.height = '200px';
+destinationSection.style.overflow = 'scroll';
+
+destinationSection.addEventListener('scroll', () => {
+  destinationSection.style.backgroundColor = 'lightgreen';
+})
