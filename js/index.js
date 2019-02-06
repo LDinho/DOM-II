@@ -100,3 +100,49 @@ bottomMidSection.addEventListener('dragover', () => {
   bottomMidSection.style.border = '3px dashed red';
 });
 
+// Keyup
+/*
+Created an input field in footer to show keyup event. Go to input field and press "enter".
+ */
+const createEle = tag => document.createElement(tag);
+const selectOne = tag => document.querySelector(tag);
+
+const footer = selectOne('footer');
+console.log(footer);
+
+const createElementAndAppend = ({tag, attribute, content, targetElement, styles}) => {
+  const newElement = createEle(tag);
+  newElement.setAttribute(attribute.type, attribute.value);
+  newElement.textContent = content;
+  Object.keys(styles).forEach((propName) => {
+    newElement.style[propName] = styles[propName];
+  });
+  targetElement.prepend(newElement);
+}
+
+createElementAndAppend({
+  tag: 'input',
+  attribute: {
+    type: 'text',
+  },
+  styles: {
+    color: 'green',
+    width: '500px',
+    fontSize: '20px',
+    height: '56px',
+    margin: '0 auto',
+    display: 'block',
+  },
+  targetElement: footer,
+});
+
+const input = selectOne('input');
+
+input.addEventListener('keyup', (e) => {
+  console.log(e);
+  console.log(e.target.value);
+  if (e.key === 'Enter') {
+    alert('Enter Pressed');
+  }
+});
+
