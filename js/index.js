@@ -108,7 +108,6 @@ const createEle = tag => document.createElement(tag);
 const selectOne = tag => document.querySelector(tag);
 
 const footer = selectOne('footer');
-console.log(footer);
 
 const createElementAndAppend = ({tag, attribute, content, targetElement, styles}) => {
   const newElement = createEle(tag);
@@ -145,4 +144,40 @@ input.addEventListener('keyup', (e) => {
     alert('Enter Pressed');
   }
 });
+
+// stopPropagation - see last bottom section in content-pick
+const selectAll = tag => document.querySelectorAll(tag);
+const contentPick = selectOne('.content-pick');
+console.log(contentPick);
+
+const buttons = selectAll('.btn');
+const [btn1, btn2, btn3] = buttons;
+console.log(btn1);
+
+const destinationItems = selectAll('.destination');
+const [funSun, mountainExc, islandGet] = destinationItems;
+console.log(funSun);
+
+// changing font-family to whole section
+contentPick.addEventListener('click', () => {
+  contentPick.style.fontFamily = 'monospace';
+})
+
+// Enable font-family change when clicking on individual destination only
+destinationItems.forEach((item) => {
+  item.addEventListener('click', (e) => {
+    item.style.fontFamily = 'fantasy';
+    item.style.backgroundColor = 'lightgreen';
+    e.stopPropagation();
+  })
+})
+
+// Trigger style changes only when clicking on any 'sign me up' buttons
+buttons.forEach((button) => {
+  button.addEventListener('click', (e) => {
+    button.style.fontFamily = 'fantasy';
+    button.style.backgroundColor = 'lightgreen';
+    e.stopPropagation();
+  })
+})
 
