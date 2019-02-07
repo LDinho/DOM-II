@@ -109,9 +109,12 @@ const selectOne = tag => document.querySelector(tag);
 
 const footer = selectOne('footer');
 
-const createElementAndAppend = ({tag, attribute, content, targetElement, styles}) => {
+const createElementAndAppend = ({tag, attributes = {}, content, targetElement, styles}) => {
   const newElement = createEle(tag);
-  newElement.setAttribute(attribute.type, attribute.value);
+  // newElement.setAttribute(attribute.type, attribute.value);
+  Object.keys(attributes).forEach((propName) => {
+    newElement.setAttribute(propName, attributes[propName]);
+  });
   newElement.textContent = content;
   Object.keys(styles).forEach((propName) => {
     newElement.style[propName] = styles[propName];
@@ -121,7 +124,7 @@ const createElementAndAppend = ({tag, attribute, content, targetElement, styles}
 
 createElementAndAppend({
   tag: 'input',
-  attribute: {
+  attributes: {
     type: 'text',
   },
   styles: {
@@ -181,3 +184,57 @@ buttons.forEach((button) => {
   })
 })
 
+// preventDefault example
+
+createElementAndAppend({
+  tag: 'form',
+  styles: {
+    width: '200px',
+    height: '56px',
+  },
+  targetElement: footer,
+});
+
+const form = selectOne('form');
+console.log('FORM SELECTED:', form);
+
+createElementAndAppend({
+  tag: 'input',
+  attributes: {
+    class: 'first-name',
+    type: 'text',
+    name: 'firstname',
+    value: 'Jon',
+  },
+  styles: {
+    color: 'green',
+    width: '200px',
+    fontSize: '20px',
+    height: '56px',
+  },
+  targetElement: form,
+});
+
+createElementAndAppend({
+  tag: 'input',
+  attributes: {
+    class: 'form-submit',
+    type: 'submit',
+    value: 'Submit',
+  },
+  styles: {
+    color: 'green',
+    width: '200px',
+    fontSize: '20px',
+    height: '56px',
+  },
+  targetElement: form,
+});
+
+const submitBtn = selectOne('.form-submit');
+
+// Prevent refresh of page when clicking submit button
+submitBtn.addEventListener('click', (e) =>{
+  alert('SUCCESS - FORM SUBMITTED');
+  e.preventDefault();
+});
